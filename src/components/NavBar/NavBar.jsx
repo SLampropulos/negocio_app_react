@@ -3,6 +3,9 @@ import Navbar from 'react-bootstrap/NavBar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
+import Cart from '../Cart/CartWidget'
+
+import CartWidget from '../Cart/CartWidget';
 
 
 function NavBar() {
@@ -21,8 +24,10 @@ function NavBar() {
                             <NavDropdown.Item href="#action/3.2">Panaderia</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4">Promos</NavDropdown.Item>
+                        <CartWidget />
                         </NavDropdown>
                     </Nav>
+                    <Cart />
                 </Navbar.Collapse>
                 
             </Container>
