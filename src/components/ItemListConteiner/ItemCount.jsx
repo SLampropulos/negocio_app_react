@@ -29,7 +29,7 @@ const ItemCount = ({stock,initial,onAdd}) =>  {
             <p className=" small mb-1">Stock disponible: {stockActual}</p>
             <InputGroup className=" w-50 mx-auto" >
                 <Button variant="outline-secondary " onClick={restar}>-</Button>
-                <FormControl className="text-center" value={cont}/>
+                <FormControl className="text-center" placeholder={cont} />
                 <Button variant="outline-secondary" onClick={aumentar}>+</Button>
             </InputGroup>
             <Button variant=" mt-1 btn-outline-primary" onClick={agregar}>Agregar al carrito</Button>

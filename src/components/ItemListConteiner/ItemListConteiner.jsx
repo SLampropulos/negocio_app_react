@@ -1,4 +1,7 @@
-import ItemCount from "./ItemCount"
+import ItemCount from "./ItemCount";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ItemList from './ItemList';
 
 function ItemListConteiner(props) {
     
@@ -7,9 +10,17 @@ function ItemListConteiner(props) {
     }
 
     return (
-        <div className="col-4 justify-content-center">
+        <div className=" justify-content-center">
             <p>Hola {props.greeting}</p>
-            <ItemCount stock={10} initial={1} onAdd={onAdd}/>
+            <Row>
+                <Col>
+                    <ItemCount stock={10} initial={1} onAdd={onAdd}/>
+                </Col>
+                <Col>            
+                    
+                </Col>
+            </Row>
+            <ItemList />
         </div>
     )
 }
