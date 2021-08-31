@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import Item from './Item';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const items = [
     {id: 1, name:"cheese cake", price:1500 ,img:"https://images.pexels.com/photos/557662/pexels-photo-557662.jpeg?cs=srgb&dl=pexels-foodie-factor-557662.jpg&fm=jpg"},
@@ -25,12 +27,19 @@ function ItemList() {
 
     return (
         <div>
-            {tortas.map(torta =><Item 
-                                    key={torta.id}
-                                    price={torta.price}
-                                    name={torta.name}
-                                    img={torta.img}
-                                />)}
+            <Row>
+                {tortas.map(torta =>
+                <Col>
+                    <Item 
+                        key={torta.id}
+                        price={torta.price}
+                        name={torta.name}
+                        img={torta.img}
+                    />
+                </Col>  
+                )}
+            </Row>
+            
         </div>
     );
 }
