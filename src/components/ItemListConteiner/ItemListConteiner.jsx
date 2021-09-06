@@ -10,7 +10,7 @@ function ItemListConteiner(props) {
     }
 
     return (
-        <div className=" justify-content-center">
+        <div className=" p-3">
             <p>Hola {props.greeting}</p>
             <Row>
                 <Col>
