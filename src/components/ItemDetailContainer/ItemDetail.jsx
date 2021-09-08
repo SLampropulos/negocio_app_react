@@ -7,14 +7,14 @@ function ItemDetail({prodActual}) {
 
     return (
         <div >
-            <Card className="w-50">
+            <Card className="w-75">
                 <Row>
                     <Col>
                         <Card.Img variant="top" src={prodActual.img} alt="imagen"/>
                     </Col>
                     <Col>
                         <Card.Body>
-                            <Card.Title>{prodActual.nombre}</Card.Title>
+                            <Card.Title>{prodActual.name}</Card.Title>
                             <Card.Text>{prodActual.detalle}</Card.Text>
                             <div className="d-grid gap-2">
                                 <Button variant="primary" >Detalles</Button>

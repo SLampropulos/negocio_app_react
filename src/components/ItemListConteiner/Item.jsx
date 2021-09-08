@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 function Item({item}) {
     return (
@@ -8,9 +9,11 @@ function Item({item}) {
             <Card.Img variant="top" src={item.img} alt="imagen"/>
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
-                <div className="d-grid gap-2">
+                
+                <Link to={`detalle/${item.id}`} className="d-grid gap-2">
                     <Button variant="primary" >Detalles</Button>
-                </div>
+                </Link>
+    
             </Card.Body>
         </Card>
         
