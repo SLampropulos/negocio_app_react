@@ -34,7 +34,10 @@ function NavBar() {
                         
                         </NavDropdown>
                     </Nav>
-                    <CartWidget />
+                    <Link to={`/cart`}>
+                        <CartWidget />
+                    </Link>
+                    
                 </Navbar.Collapse>
                 
             </Container>

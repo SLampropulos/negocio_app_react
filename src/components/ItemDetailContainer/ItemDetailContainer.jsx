@@ -34,7 +34,7 @@ function ItemDetailContainer() {
 
 
     return (
-        <div className=" p-3 ">
+        <div className=" p-3 justify-content-center ">
             <ItemDetail prodActual={prodActual} />
         </div>
     )

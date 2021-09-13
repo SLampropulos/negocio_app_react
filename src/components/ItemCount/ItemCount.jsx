@@ -9,7 +9,7 @@ const ItemCount = ({stock,initial,onAdd}) =>  {
     const [carrito,setCarrito] = useState(0);
     
     const aumentar = () => {
-        setCont(cont + 1);
+        if(stock>cont) setCont(cont + 1);
     };
     const restar = () => {
         if(cont > 1) setCont(cont - 1);        

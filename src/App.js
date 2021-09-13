@@ -20,6 +20,9 @@ function App() {
           <Route exact path="/detalle/:id">
             <ItemDetailConteiner />  
           </Route>
+          <Route exact path="/cart">
+            <p>Carrito</p>
+          </Route>
         </Switch>
         
         

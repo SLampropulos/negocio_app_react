@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ItemCount from "./ItemCount";
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import ItemList from './ItemList';
 import prodc from '../../assets/imagenes';
 
@@ -36,23 +33,11 @@ function ItemListConteiner(props) {
         }
     },[product]);
 
-    const onAdd = (carrito) =>{
-
-        alert(`se agregaron ${carrito} productos al carrito`);
-    }
-    console.log(product);
 
     return (
         <div className=" p-3">
             <p>Hola {props.greeting}</p>
-            <Row>
-                <Col>
-                    <ItemCount stock={10} initial={1} onAdd={onAdd}/>
-                </Col>
-                <Col>            
-                    
-                </Col>
-            </Row>
+                
             <ItemList items={items}/>
         </div>
     )
