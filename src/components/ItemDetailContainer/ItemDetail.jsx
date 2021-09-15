@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import ItemCount  from '../ItemCount/ItemCount';
 import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
+import {useCartContext} from '../Context/CartContext'
 
 const ButtonACarrito = () => {
     return(
@@ -17,14 +18,12 @@ const ButtonACarrito = () => {
 function ItemDetail({prodActual}) {
 
     const [botonActual,setBotonActual] = useState('count');
+    const {agregarAlCarrito} = useCartContext();
     
-
-    function agregarCarrito(){
+    function onAdd(cant){
         setBotonActual('terminarCompra');
-    }
-    function onAdd(compra){
-        agregarCarrito();
-        console.log(compra + " del producto "+ prodActual.id);
+        agregarAlCarrito({prodActual,cant});
+        
     }
 
     return (
