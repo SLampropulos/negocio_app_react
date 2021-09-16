@@ -42,7 +42,8 @@ function CartContextProvider({children}) {
                 {carrito,
                 agregarAlCarrito,
                 borrarCarrito,
-                quitarItem
+                quitarItem,
+                isInCard
                 }
             }>
             {children}

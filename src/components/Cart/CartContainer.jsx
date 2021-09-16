@@ -22,7 +22,7 @@ function CartContainer() {
                     <Button onClick={borrarCarrito}>Vaciar carrito</Button>
                 </Col>
                 <Col>
-                    <p>Total: {total}</p>
+                    <p>Total: ${total}</p>
                     <Button>Finalizar compra</Button>
                 </Col>
             </Row>

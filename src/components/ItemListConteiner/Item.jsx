@@ -10,7 +10,7 @@ function Item({item}) {
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 
-                <Link to={`detalle/${item.id}`} className="d-grid gap-2">
+                <Link to={`/detalle/${item.id}`} className="d-grid gap-2">
                     <Button variant="primary" >Detalles</Button>
                 </Link>
     
