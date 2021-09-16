@@ -4,15 +4,15 @@ import ItemCart from './ItemCart';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function CartContainer() {
-    const {carrito, borrarCarrito,quitarItem} = useCartContext();
+function Carrito({carrito,borrarCarrito,quitarItem}){
+    
     let total = 0;
     
     carrito.forEach(element => {
         console.log(element);
         total += (element.prodActual.price * element.cant);
     });
-    return (
+    return(
         <div>
             {carrito.map(compra =>
                 <ItemCart compra={compra} quitarItem={quitarItem} />
@@ -27,6 +27,21 @@ function CartContainer() {
                 </Col>
             </Row>
         </div>
+    )
+}
+
+function CartContainer() {
+
+    const {carrito, borrarCarrito,quitarItem,} = useCartContext();
+    let vacio = carrito.length ===0 ;
+    return (
+        <>
+            {vacio ?
+                <h2 className="mt-5">No hay item cargados... :(</h2> 
+                :
+                <Carrito carrito={carrito} borrarCarrito={borrarCarrito} quitarItem={quitarItem}/>
+            }
+        </>
     )
 }
 

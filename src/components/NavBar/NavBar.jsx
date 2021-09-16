@@ -10,44 +10,33 @@ import { Link } from 'react-router-dom';
 function NavBar() {
     return (
         
-        <Navbar bg="light" expand="lg" className="mb-3" sticky="top">
-            <Container >
-
+        <Navbar bg="light" expand="lg" className="mb-3">
+            <Container>
                 <Link to={`/`}>
                     <Navbar.Brand href="#home">Marrazo Cake</Navbar.Brand>
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                    <div className="text-end">
-                    <Link to="/">
+                    <Nav className="me-auto">
+                        <Link to="/">
                             <Nav.Link href="#home">Home</Nav.Link>
                         </Link>
-                    </div>
-                    <div className="text-end">
-                        <Nav.Link href="#link">Nosotros</Nav.Link>                        
-                    </div>
-                    <div className="text-end">
+                        <Nav.Link href="#link">Nosotros</Nav.Link>
                         <NavDropdown title="Productos" id="basic-nav-dropdown">
-                                <Link to={`/productos/pasteleria`}>
-                                    <NavDropdown.Item href="#action/3.1" className="text-end">Tortas</NavDropdown.Item>
-                                </Link>
-                                <Link to={`/productos/panaderia`}>
-                                    <NavDropdown.Item href="#action/3.2" className="text-end">Panaderia</NavDropdown.Item>
-                                </Link>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4" className="text-end">Promos</NavDropdown.Item>
-                            
-                            </NavDropdown>                        
-                    </div>
-                    <div className="align-self-end col-2">
-                        <Link to={`/cart`}>
-                            <CartWidget />
-                        </Link>                        
-                    </div>
-
-
-                </Nav>
+                            <Link to={`/productos/pasteleria`}>
+                                <NavDropdown.Item href="#action/3.1">Tortas</NavDropdown.Item>
+                            </Link>
+                            <Link to={`/productos/panaderia`}>
+                                <NavDropdown.Item href="#action/3.2">Panaderia</NavDropdown.Item>
+                            </Link>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4">Promos</NavDropdown.Item>
+                        
+                        </NavDropdown>
+                    </Nav>
+                    <Link to={`/cart`}>
+                        <CartWidget />
+                    </Link>
                     
                 </Navbar.Collapse>
                 

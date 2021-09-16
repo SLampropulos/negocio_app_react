@@ -10,10 +10,10 @@ function CartWidget() {
 
     return (
         
-        <div className="position-relative">
+        <div className="position-relative ">
             <Button variant="light">
                 <Image src="https://image.flaticon.com/icons/png/512/3144/3144456.png" width={30} height={30}/>
-                <span className="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-secondary">{cantidadTotal} <span class="visually-hidden">unread messages</span></span>
+                {!(cantidadTotal===0) && <span className="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-secondary">{cantidadTotal} <span class="visually-hidden">unread messages</span></span>}
             </Button>
         </div>
     )

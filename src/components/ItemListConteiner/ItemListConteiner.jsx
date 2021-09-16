@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
 import ItemList from './ItemList';
 import prodc from '../../assets/imagenes';
 
@@ -14,6 +15,8 @@ const items = [
 ];
 
 let demora = new Promise((resolve) => {
+
+
     setTimeout(() =>{
         resolve(items);
     },2000);
@@ -23,22 +26,32 @@ let demora = new Promise((resolve) => {
 function ItemListConteiner(props) {
     
     const {product} = useParams();
-
+    const [carga,setCarga] = useState(true);
+    
     const [items, setItems] = useState([]);
+
     useEffect(() => {
         if(product === undefined){
-            demora.then((resp)=>setItems(resp));
+            demora.then((resp)=>{
+                setItems(resp);
+                setCarga(false);
+            }); 
         }else{
-            demora.then((resp)=>setItems(resp.filter( i => product === i.product)));
+            demora.then((resp)=>{
+                setItems(resp.filter( i => product === i.product))
+                setCarga(false);
+            });
         }
     },[product]);
 
-
     return (
         <div className=" p-3">
-            <p>Hola {props.greeting}</p>
-                
-            <ItemList items={items}/>
+            {carga ?
+                <Spinner className="mt-5" animation="border" />
+                :
+                <ItemList items={items}/>        
+            }
+
         </div>
     )
 }
