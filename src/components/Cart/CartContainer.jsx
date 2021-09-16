@@ -35,13 +35,13 @@ function CartContainer() {
     const {carrito, borrarCarrito,quitarItem,} = useCartContext();
     let vacio = carrito.length ===0 ;
     return (
-        <>
+        <div className="p-3">
             {vacio ?
                 <h2 className="mt-5">No hay item cargados... :(</h2> 
                 :
                 <Carrito carrito={carrito} borrarCarrito={borrarCarrito} quitarItem={quitarItem}/>
             }
-        </>
+        </div>
     )
 }
 

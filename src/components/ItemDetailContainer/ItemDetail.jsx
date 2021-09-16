@@ -9,9 +9,18 @@ import {useCartContext} from '../Context/CartContext'
 
 const ButtonACarrito = () => {
     return(
-        <Link to={`/cart`}>    
-            <Button >Finalizae Compra</Button>
-        </Link>
+        <div >
+            <div className="col my-2">
+                <Link to={`/cart`}>    
+                    <Button >Finalizae Compra</Button>
+                </Link>
+            </div>
+            <div className="col my-2">
+                <Link to={`/`}>    
+                    <Button >Seguir comprando</Button>
+                </Link>
+            </div>
+        </div>
     );
 }
 
@@ -33,7 +42,7 @@ function ItemDetail({prodActual}) {
                     <Col >
                         <Card.Img variant="top" src={prodActual.img} alt="imagen"/>
                     </Col>
-                    <Col className="col-12 col-lg-6 p-3">
+                    <Col className="col-12 col-lg-6 p-3 ">
                         <Card.Body>
                             <Card.Title>{prodActual.name}</Card.Title>
                             <Card.Text>{prodActual.detalle} <br/> Precio: {prodActual.price} 

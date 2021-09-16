@@ -1,5 +1,6 @@
 import {useState,useEffect} from 'react';
 import {useParams} from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
 import ItemDetail from './ItemDetail';
 import prodc from '../../assets/imagenes';
 
@@ -22,6 +23,7 @@ let demora = new Promise((resolve) => {
 
 function ItemDetailContainer() {
     const [prodActual,setProdActual] = useState({});
+    const [carga,setCarga] = useState(true);
 
     const {id} = useParams();
     
@@ -29,13 +31,18 @@ function ItemDetailContainer() {
         
         demora.then((resultado) => {
             setProdActual(resultado.find( i => id === i.id));
+            setCarga(false);
         });
     },[id]);
 
 
     return (
         <div className=" p-3 justify-content-center ">
-            <ItemDetail prodActual={prodActual} />
+            {carga ? 
+                <Spinner className="mt-5" animation="border" />
+                :
+                <ItemDetail prodActual={prodActual} />
+            }
         </div>
     )
 }
