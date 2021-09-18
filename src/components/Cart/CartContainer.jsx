@@ -3,6 +3,19 @@ import Button from 'react-bootstrap/esm/Button';
 import ItemCart from './ItemCart';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {Link} from'react-router-dom';
+
+function NoHayCompras() {
+    return (
+        <div>
+            <h2 className="mt-5">No hay item cargados... :(</h2> 
+            <Link to={'/'}>
+                <Button className="mt-5" size="lg">Ir al catalogo</Button>
+            </Link>
+        </div>
+    )
+}
+
 
 function Carrito({carrito,borrarCarrito,quitarItem}){
     
@@ -37,7 +50,7 @@ function CartContainer() {
     return (
         <div className="p-3">
             {vacio ?
-                <h2 className="mt-5">No hay item cargados... :(</h2> 
+                <NoHayCompras/>
                 :
                 <Carrito carrito={carrito} borrarCarrito={borrarCarrito} quitarItem={quitarItem}/>
             }
