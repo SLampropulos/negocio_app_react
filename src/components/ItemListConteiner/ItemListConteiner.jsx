@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import ItemList from './ItemList';
-
+//import prodc from '../../assets/imagenes';
 import {getFirestore} from '../../service/getFirebase';
 
 /*
-import prodc from '../../assets/imagenes';
+
 const Items = [
     
     {id: 1, product:"pasteleria" ,name:"Cheese cake", price:1500 ,img:prodc.cheeseCake},
@@ -22,7 +22,7 @@ function ItemListConteiner(props) {
     
     const {product} = useParams();
     const [carga,setCarga] = useState(true);
-    
+
     const [items, setItems] = useState([]);
 
     useEffect(() => {

@@ -1,9 +1,8 @@
 import {useCartContext} from '../Context/CartContext';
 import Button from 'react-bootstrap/esm/Button';
 import ItemCart from './ItemCart';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import {Link} from'react-router-dom';
+import FormContact from '../FormContact/FormContact';
 
 function NoHayCompras() {
     return (
@@ -17,7 +16,7 @@ function NoHayCompras() {
 }
 
 
-function Carrito({carrito,borrarCarrito,quitarItem}){
+function Carrito({carrito,quitarItem}){
     
     let total = 0;
     
@@ -30,29 +29,23 @@ function Carrito({carrito,borrarCarrito,quitarItem}){
             {carrito.map(compra =>
                 <ItemCart compra={compra} quitarItem={quitarItem} />
                 )}
-            <Row className="align-items-center">
-                <Col>
-                    <Button onClick={borrarCarrito}>Vaciar carrito</Button>
-                </Col>
-                <Col>
-                    <p>Total: ${total}</p>
-                    <Button>Finalizar compra</Button>
-                </Col>
-            </Row>
+                
+            <hr class="featurette-divider"></hr>
+            <FormContact total={total}/>
         </div>
     )
 }
 
 function CartContainer() {
 
-    const {carrito, borrarCarrito,quitarItem,} = useCartContext();
+    const {carrito,quitarItem,} = useCartContext();
     let vacio = carrito.length ===0 ;
     return (
         <div className="p-3">
             {vacio ?
                 <NoHayCompras/>
                 :
-                <Carrito carrito={carrito} borrarCarrito={borrarCarrito} quitarItem={quitarItem}/>
+                <Carrito carrito={carrito} quitarItem={quitarItem}/>
             }
         </div>
     )
