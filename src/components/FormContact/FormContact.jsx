@@ -4,37 +4,42 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useCartContext } from '../Context/CartContext';
 import {getFirestore} from '../../service/getFirebase';
+import {useState} from 'react'
 
 
 
 function FormContact({total}) {
     const {carrito,cliente,setCliente,borrarCarrito,vaciarCliente} = useCartContext();
-    
+    const [item,setItem] =useState();
+
     const newOrder={
         buyer: cliente,
         itmes: carrito,
         total: total
     }
-    function finalizaCompra(){
-        const bd = getFirestore();
-        const orders = bd.collection('orders')
-    
-        orders.add(newOrder)
-        .then(resp=> console.log(resp))
-        .catch(err => console.log(err));
 
-        // carrito.forEach(element => {
-        //     console.log(element.prodActual.id);
-        //     const items = bd.collection('items').doc(element.prodActual.id);
-        //     console.log(items.data());
-        //     items.update({
-        //         stock: 5
-        //     })
-        //     .then(resp => console.log("bien"))
-        //     .catch(err => console.log("error"));
-        // })
-        vaciarCliente();
-        borrarCarrito();
+    function finalizaCompra(event) {
+        event.preventDefault();
+        const db = getFirestore();
+        const orders = db.collection('orders');
+        orders.add(newOrder)
+        .then(resp=> console.log("ok"))
+        .catch(err => console.log("errpr"));
+
+
+        carrito.forEach(element => {
+            const items = db.collection('Items').doc(element.prodActual.id);
+            items.get()
+            .then(data =>{setItem(data.data())})
+            console.log(item.stock - element.cant)
+            items.update({
+                stock: (item.stock - element.cant)
+            })  
+            .then((resp) => console.log("ok"))
+            .catch((err) => console.log("error"))
+        })
+
+        
     
     }
     
