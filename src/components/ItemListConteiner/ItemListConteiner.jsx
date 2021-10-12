@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import ItemList from './ItemList';
 import {getFirestore} from '../../service/getFirebase';
-import prodc from '../../assets/imagenes';
+import '../../assets/imagenes';
 
 
 function ItemListConteiner(props) {
