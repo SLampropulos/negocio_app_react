@@ -13,8 +13,6 @@ function FormContact({total}) {
     const {carrito,cliente,setCliente,borrarCarrito} = useCartContext();
     const [item,setItem] =useState();
     const [valido,setValido] =useState(false);
-    const [stockActual,setStock] = useState(0);
-    const [realizada,setRealizada] = useState(false);
     const [idOrder, setIdOrder] = useState("");
     
 
@@ -39,8 +37,7 @@ function FormContact({total}) {
 
             items.get()
             .then(data =>{
-                setItem(data.data())
-                setStock(item.stock);
+                setItem(data.data());
 
                 if((data.data().stock - element.cant) <0) {
                     alert('nos quedamos sin stock :(\nactualiza el carrito antes que te quedes sin tu orden!');
@@ -50,7 +47,7 @@ function FormContact({total}) {
             })
             if(valido){
                 items.update({
-                    stock: (stockActual - element.cant)
+                    stock: (item.stock - element.cant)
                     
                 })  
                 .then((resp) => console.log("ok"))
@@ -62,7 +59,6 @@ function FormContact({total}) {
             orders.add(newOrder)
             .then(resp=> {
                 setIdOrder(resp.id);
-                setRealizada(true);
             })
             .catch(err => console.log("errpr"));
         }
@@ -81,7 +77,7 @@ function FormContact({total}) {
     }
     return (
         <div>
-            {realizada ?
+            {valido ?
                 <ContactInfo idCompra={idOrder} mail={cliente.mail}/>
                 :
                 <Form onChange={handleChange} onSubmit={finalizaCompra}>
