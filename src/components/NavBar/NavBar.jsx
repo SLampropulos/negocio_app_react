@@ -24,7 +24,7 @@ function NavBar() {
                         <Nav.Link href="#link">Nosotros</Nav.Link>
                         <NavDropdown title="Productos" id="basic-nav-dropdown">
                             <Link to={`/productos/pasteleria`}>
-                                <NavDropdown.Item href="#action/3.1">Tortas</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.1">Pasteleria</NavDropdown.Item>
                             </Link>
                             <Link to={`/productos/panaderia`}>
                                 <NavDropdown.Item href="#action/3.2">Panaderia</NavDropdown.Item>

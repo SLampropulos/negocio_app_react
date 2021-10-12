@@ -8,6 +8,7 @@ import {getFirestore} from '../../service/getFirebase';
 function ItemDetailContainer() {
     const [prodActual,setProdActual] = useState({});
     const [carga,setCarga] = useState(true);
+    const [encontro,setEncontro] = useState(true);
 
     const {id} = useParams();
     
@@ -16,12 +17,13 @@ function ItemDetailContainer() {
         const db = getFirestore();
         const producto = db.collection('Items').doc(id).get();
 
-        setTimeout(() =>{
-            producto.then(data => {
-                setProdActual({id: data.id , ...data.data()});
-            })
+        producto.then(data => {
+            setProdActual({id: data.id , ...data.data()});
             setCarga(false);
-        },2000);
+            if(data.data() === undefined) setEncontro(false);
+            console.log(data.data());
+        })
+        .catch(err=>setEncontro(false));
     },[id]);
 
 
@@ -30,7 +32,10 @@ function ItemDetailContainer() {
             {carga ? 
                 <Spinner className="mt-5" animation="border" />
                 :
-                <ItemDetail prodActual={prodActual} />
+                encontro ?
+                    <ItemDetail prodActual={prodActual} />
+                    :
+                    <p>Ocurrio un error el producto no se encuentra</p>
             }
         </div>
     )

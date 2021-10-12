@@ -27,9 +27,9 @@ const ItemCount = ({stock,initial,onAdd}) =>  {
     return (
         <div>
             <p className=" small mb-1">Stock disponible: {stockActual}</p>
-            <InputGroup className=" w-50 mx-auto" >
+            <InputGroup className="pb-4 d-flex justify-content-center" >
                 <Button variant="outline-secondary " onClick={restar}>-</Button>
-                <FormControl className="text-center" placeholder={cont} />
+                <label className="px-5 py-1">{cont}</label>
                 <Button variant="outline-secondary" onClick={aumentar}>+</Button>
             </InputGroup>
             <Button variant=" mt-1 btn-outline-primary" onClick={agregar}>Agregar al carrito</Button>

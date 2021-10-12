@@ -49,7 +49,7 @@ function ItemDetail({prodActual}) {
                             </Card.Text>
                             
                         </Card.Body>
-                        {botonActual === 'count' ? <ItemCount stock={10} initial={1} onAdd={onAdd} /> : <ButtonACarrito/>}
+                        {botonActual === 'count' ? <ItemCount stock={prodActual.stock} initial={1} onAdd={onAdd} /> : <ButtonACarrito/>}
                         
             
                     </Col>
