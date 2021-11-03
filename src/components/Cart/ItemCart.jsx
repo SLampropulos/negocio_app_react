@@ -2,9 +2,12 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/esm/Button';
+import { useCartContext } from '../Context/CartContext';
 
 function ItemCart({compra, quitarItem}) {
+    const {valido} = useCartContext();
     let {prodActual, cant} = compra;
+
     return (
         <Card className="m-5">
                 <Row className="align-items-center">
@@ -25,9 +28,13 @@ function ItemCart({compra, quitarItem}) {
                                     <Row><p>Precio:</p></Row>
                                     <Row><p>{prodActual.price * cant}</p></Row>
                                 </Col>
+                                {valido ?
+                                <></>
+                                :
                                 <Col>
                                     <Button onClick={() => quitarItem(prodActual.id)}> Sacar producto </Button>
                                 </Col>
+                                }
                             </Row>
                         </Card.Body>
                     </Col>

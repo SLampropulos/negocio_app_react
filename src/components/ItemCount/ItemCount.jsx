@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import FormControl from 'react-bootstrap/FormControl';
 
 const ItemCount = ({stock,initial,onAdd}) =>  {
     const [stockActual,setStock] = useState(stock);

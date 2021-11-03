@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import ItemCount  from '../ItemCount/ItemCount';
 import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
-import {useCartContext} from '../Context/CartContext'
+import {useCartContext} from '../Context/CartContext';
 
 const ButtonACarrito = () => {
     return(

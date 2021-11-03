@@ -11,8 +11,10 @@ const clienteVacio ={nombre:'',mail:'',direccion:'',date: firebase.firestore.Tim
 function CartContextProvider({children}) {
 
     const [carrito,setCarrito] = useState([]);
+    const [cantCarrito,setCantCarrito] = useState(0);
     const [cliente,setCliente] = useState(clienteVacio);
-
+    const [valido,setValido] =useState(false);
+    
     function agregarAlCarrito(compra){
         let esta =false;
         carrito.forEach(element => {
@@ -20,11 +22,14 @@ function CartContextProvider({children}) {
             if(element.prodActual.id === compra.prodActual.id){
                 esta = true;
                 element.cant += compra.cant;
+                setCantCarrito(cantCarrito + compra.cant);
             }
         });
-        if(!esta) setCarrito([...carrito,compra]);
+        if(!esta) {
+            setCarrito([...carrito,compra]);
+            setCantCarrito(cantCarrito + compra.cant);
+        }
 
-        
     }
 
     function isInCard(id){
@@ -32,12 +37,17 @@ function CartContextProvider({children}) {
         return (encontrado.length >0);
     }
     
-    function quitarItem(id) {
+    function quitarItem(id) { 
+        setCantCarrito(0);    
         setCarrito(carrito.filter(element => element.prodActual.id !== id));
+        carrito.forEach(element => setCantCarrito(cantCarrito + element.cant))
+        
     }
 
     function borrarCarrito(){
         setCarrito([]);
+        setCantCarrito(0);
+        setValido(false);
     }
     function vaciarCliente(){
         setCliente(clienteVacio);
@@ -52,7 +62,10 @@ function CartContextProvider({children}) {
                 isInCard,
                 setCliente,
                 cliente,
-                vaciarCliente
+                vaciarCliente,
+                cantCarrito,
+                valido,
+                setValido
                 }
             }>
             {children}

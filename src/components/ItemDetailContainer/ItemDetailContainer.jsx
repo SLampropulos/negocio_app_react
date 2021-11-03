@@ -21,7 +21,7 @@ function ItemDetailContainer() {
             setProdActual({id: data.id , ...data.data()});
             setCarga(false);
             if(data.data() === undefined) setEncontro(false);
-            console.log(data.data());
+            
         })
         .catch(err=>setEncontro(false));
     },[id]);

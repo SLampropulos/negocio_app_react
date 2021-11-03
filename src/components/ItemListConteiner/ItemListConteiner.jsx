@@ -18,19 +18,19 @@ function ItemListConteiner(props) {
         const db = getFirestore();
         const queryDb = db.collection('Items').get();
         
-        setTimeout(() =>{
-            if(product === undefined){
-                queryDb.then(data => {
-                    setItems(data.docs.map(item => ({id: item.id, ...item.data()})));
-                });
-            }else{
-                const categ = db.collection('Items').where('productId','==',product).get()
-                categ.then(data => {
-                    setItems(data.docs.map(item => ({id: item.id, ...item.data()})));
-                })
-            }
-            setCarga(false);
-        },2000);
+        
+        if(product === undefined){
+            queryDb.then(data => {
+                setItems(data.docs.map(item => ({id: item.id, ...item.data()})));
+        });
+        }else{
+            const categ = db.collection('Items').where('productId','==',product).get()
+            categ.then(data => {
+                setItems(data.docs.map(item => ({id: item.id, ...item.data()})));
+            })
+        }
+        setCarga(false);
+        
         
     },[product]);
 

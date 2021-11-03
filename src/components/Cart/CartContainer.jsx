@@ -4,6 +4,7 @@ import ItemCart from './ItemCart';
 import {Link} from'react-router-dom';
 import FormContact from '../FormContact/FormContact';
 
+
 function NoHayCompras() {
     return (
         <div>
@@ -21,7 +22,6 @@ function Carrito({carrito,quitarItem}){
     let total = 0;
     
     carrito.forEach(element => {
-        console.log(element);
         total += (element.prodActual.price * element.cant);
     });
     return(

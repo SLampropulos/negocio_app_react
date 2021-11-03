@@ -5,16 +5,17 @@ import Button from 'react-bootstrap/Button';
 import ContactInfo from '../ContactInfo/ContactInfo';
 import { useCartContext } from '../Context/CartContext';
 import {getFirestore} from '../../service/getFirebase';
-import {useState} from 'react'
+import {useState} from 'react';
 
 
 
 function FormContact({total}) {
-    const {carrito,cliente,setCliente,borrarCarrito} = useCartContext();
-    const [item,setItem] =useState();
-    const [valido,setValido] =useState(false);
+    const {carrito,cliente,setCliente,borrarCarrito,valido,setValido} = useCartContext();
+    const [mailValido,setMailValido] =useState(true);
     const [idOrder, setIdOrder] = useState("");
     
+    
+    console.log(idOrder);
 
     const newOrder={
         buyer: cliente,
@@ -26,44 +27,53 @@ function FormContact({total}) {
         event.preventDefault();
         const db = getFirestore();
         const orders = db.collection('orders');
+        let validoCompra = false;
+        let mailValido = false;
+        let stockSwich=0;
         
         carrito.forEach(element => {
             const items = db.collection('Items').doc(element.prodActual.id);
             
             if(cliente.mail !== cliente.mailConfrimacion){
-                alert("el mail no son iguales");
-                return;
+                setMailValido(false);
+                mailValido=false;
+            }else{
+                setMailValido(true);
+                mailValido= true;
             }
 
             items.get()
             .then(data =>{
-                setItem(data.data());
-
                 if((data.data().stock - element.cant) <0) {
                     alert('nos quedamos sin stock :(\nactualiza el carrito antes que te quedes sin tu orden!');
-                    return;
-                }
-                setValido(true);
-            })
-            if(valido){
-                items.update({
-                    stock: (item.stock - element.cant)
                     
-                })  
-                .then((resp) => console.log("ok"))
-                .catch((err) => console.log("error"))
-            }
+                }else{
+                    stockSwich = data.data().stock - element.cant;
+                    validoCompra = true;
+                }
+                if(validoCompra && mailValido){
+                    
+                    items.update({
+                        stock: stockSwich
+                        
+                    })  
+                    .then((resp) => console.log("ok"))
+                    .catch((err) => console.log("error"))
+                }
+                if(validoCompra && mailValido){
+                    orders.add(newOrder)
+                    .then(resp=> {
+                        setIdOrder(resp.id);
+                        setValido(true);
+                    })
+                    .catch(err => {
+                        console.log("errpr")});
+                }
+        
+            })
+            
         })
 
-        if(valido){
-            orders.add(newOrder)
-            .then(resp=> {
-                setIdOrder(resp.id);
-            })
-            .catch(err => console.log("errpr"));
-        }
-
-    
     }
     
 
@@ -95,6 +105,11 @@ function FormContact({total}) {
                         <Form.Control type="email" name="mailConfrimacion" placeholder="Confirmar mail" required />
                         </Form.Group>
                     </Row>
+                    {mailValido ?
+                        <></>
+                        :
+                        <p>Mail no valido</p>
+                    }
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="Direccion">
                             <Form.Control placeholder="Direccion" name="direccion" required />
